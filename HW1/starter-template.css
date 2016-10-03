@@ -1,7 +1,26 @@
-body {
+body 
+{
   padding-top: 50px;
 }
-.starter-template {
+
+p
+{
+  text-align: left;
+}
+
+li
+{
+	text-align: left;
+}
+
+h1
+{
+	text-align: center;
+	font-weight: bold
+}
+
+.starter-template
+{
   padding: 40px 15px;
-  text-align: center;
+  /*text-align: center;*/
 }

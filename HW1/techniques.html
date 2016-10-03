@@ -75,7 +75,30 @@
             </div>
             </div>
 
+            <h3>Interesting Solutions</h3>
+            <dl>
+              <dt>Tarpits</dt><dd>A tarpit is any server software which intentionally responds extremely slowly to client commands. By running a tarpit which treats acceptable mail normally and known spam slowly or which appears to be an open mail relay, a site can slow down the rate at which spammers can inject messages into the mail facility. Many systems will simply disconnect if the server doesn't respond quickly, which will eliminate the spam. However, a few legitimate email systems will also not deal correctly with these delays.</dd>
 
+              <dt>Spamtrapping</dt><dd>Spamtrapping is the seeding of an email address so that spammers can find it, but normal users can not. If the email address is used then the sender must be a spammer and they are black listed.</dd>
+
+              <dt>Quit detection</dt><dd>An SMTP connections should always be closed with a QUIT command. Many spammers skip this step because their spam has already been sent and taking the time to properly close the connection takes time and bandwidth. Some MTAs are capable of detecting whether or not the connection is closed correctly and use this as a measure of how trustworthy the other system is.</dd>
+            </dl>
+
+            <h3>Hybrid Filtering Example</h3>
+            <p>Hybrid filtering, such as is implemented in the open source programs SpamAssassin and Policyd-weight uses some or all of the various tests for spam, and assigns a numerical score to each test. Each message is scanned for these patterns, and the applicable scores tallied up. If the total is above a fixed value, the message is rejected or flagged as spam. By ensuring that no single spam test by itself can flag a message as spam, the false positive rate can be greatly reduced.
+
+Several appliances such as the Barracuda Networks Spam firewall, and services like Postini and Cudamail employ spam scoring and bayesian filtering to arrive at thresholds which determine filtering action. An example of defaults might be:</p>
+            <table class="table">
+              <thread><tr>
+              <th>Threshold</th>
+              <th>Action</th>
+              </tr></thread>
+
+              <tbody>
+                <tr><td>3</td><td>Tag the email (add a "tagged" or "suspected spam" type of string to the email subject line to assist end users in checking their inbox).</td></tr>
+                <tr><td>4.5</td><td>Quarantine the email (hold it, and email the end user to let them know that it quite possibly is spam and as a result they must log in and see it). Typically this type of action is taken due to more "spammy" features in the email such as hyperlinks, more image content than text, or certain words.</td></tr>
+                <tr><td>6</td><td>Block the email (do not allow it through). Typically this action is taken due to presence in the email of words like viagra, or links to malware sites, or to urls that are known to be used by spammers, or to have been blacklisted by a variety of online blacklist services like Barracuda Central or SpamHaus.</td></tr>
+              </tbody>
 
 
 

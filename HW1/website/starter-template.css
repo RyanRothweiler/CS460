@@ -1,0 +1,55 @@
+
+/*Some example tags for future reference*/
+/*html tag selector*/
+body 
+{
+  padding-top: 50px;
+}
+
+/*class selector*/
+.classSelector
+{
+	text-align: right;
+}
+
+/*selects all elemetns*/
+*
+{
+
+}
+
+/*selects all body AND all p elemnts*/
+body, p
+{
+
+}
+
+
+/*Actual css for HW1 pages*/
+p
+{
+  text-align: left;
+}
+
+li
+{
+	text-align: left;
+}
+
+h1
+{
+	text-align: center;
+	font-weight: bold
+}
+
+/*add a litte indent to the body on the main page*/
+.bodyClass
+{
+	text-indent: 10;
+}
+
+.starter-template
+{
+  padding: 40px 15px;
+  /*text-align: center;*/
+}

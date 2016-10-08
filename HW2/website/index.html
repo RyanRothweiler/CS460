@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JavaScript Game</title>
+
+    <!-- bootstrap styles -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- my styles -->
+    <link href="styles.css" rel="stylesheet">
+
+
+    <!-- javascript -->
+    <script>
+
+    var gridSizeY = 10;
+    var gridSizeX = gridSizeY * 4;
+
+    function insertHTML(id, html) 
+    {
+      var el = document.getElementById(id);
+      
+      if(!el) 
+      {
+          alert('Element with id ' + id + ' not found.');
+      }
+      
+      el.innerHTML = html;
+    }
+
+    function StartGame()
+    {
+      insertHTML("controls", 
+                 "<input type='button' value='Move Up' onclick='MoveUp()' /><input type='button' value='Move Down' onclick='MoveDown()' /> <input type='button' value='Move Left' onclick='MoveLeft()' /><input type='button' value='Move Right' onclick='MoveRight()' />");
+      DrawBoard();
+    }
+
+    function GetPlayerX()
+    {
+      return ($('#playerX').data('url'));
+    }
+
+    function GetPlayerY()
+    {
+      return ($('#playerY').data('url'));
+    }
+
+    function MoveUp()
+    {
+        var playerY = GetPlayerY();
+        if (playerY - 1 >= 0)
+        {
+          playerY--;
+        }
+        $('#playerY').data("url", playerY);
+        DrawBoard();
+    }
+
+    function MoveDown()
+    {
+        var playerY = GetPlayerY();
+        if (playerY + 1 < gridSizeY)
+        {
+          playerY++;
+        }
+        $('#playerY').data("url", playerY);
+        DrawBoard();
+    }
+
+    function MoveRight()
+    {
+        var playerX = GetPlayerX();
+        if (playerX + 1 < gridSizeX)
+        {
+          playerX++;
+        }
+        $('#playerX').data("url", playerX);
+        DrawBoard();
+    }
+
+    function MoveLeft()
+    {
+        var playerX = GetPlayerX();
+        if (playerX - 1 >= 0)
+        {
+          playerX--;
+        }
+        $('#playerX').data("url", playerX);
+        DrawBoard();
+    }
+
+
+    function DrawBoard()
+    {
+
+      var playerX = GetPlayerX();
+      var playerY = GetPlayerY();
+
+      var html = "<table>";
+      for (var row = 0; row < gridSizeY; row++)
+      {
+          html += "<tr>";
+          for (var column = 0; column < gridSizeX; column++)
+          {
+            var charDrawing = "-";
+            if (row == playerY && column == playerX)
+            {
+              charDrawing = "*";
+            }
+            html += "<td>" + charDrawing + "</td>";
+          }
+          html += "</tr>";
+      }
+      html += "</table>";
+      insertHTML("gameboard", html);
+    }
+    </script>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">JavaScript Game</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+    <!-- game data stored in html -->
+    <div id="playerX" data-url="5"></div>
+    <div id="playerY" data-url="5"></div>
+
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Game</h1>
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                <div class="well">
+                <h3>Game Board</h3>
+                <ul id="gameboard">
+
+
+
+
+
+
+                </ul>
+                </div>
+            </div>
+
+                <div class="col-sm-6">
+                <div class="well">
+                <h3 id="controls">Controls</h3>
+                  <input type="button" value="Start Game" onclick="StartGame()" />
+
+                  <!-- controls go here
+<!--                   <input type="button" value="Move Up" onclick="DrawBoard()" />
+                  <input type="button" value="Move Down" onclick="DrawBoard()" />
+                  <input type="button" value="Move Left" onclick="DrawBoard()" />
+                  <input type="button" value="Move Right" onclick="DrawBoard()" />
+ -->
+                </div>
+            </div>
+            </div>
+
+
+      </div>
+
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

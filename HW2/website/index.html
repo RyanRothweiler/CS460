@@ -18,8 +18,7 @@
     <!-- javascript -->
     <script>
 
-    var gridSizeY = 10;
-    var gridSizeX = gridSizeY * 4;
+    var gridSize = 10;
 
     function insertHTML(id, html) 
     {
@@ -36,7 +35,7 @@
     function StartGame()
     {
       insertHTML("controls", 
-                 "<input type='button' value='Move Up' onclick='MoveUp()' /><input type='button' value='Move Down' onclick='MoveDown()' /> <input type='button' value='Move Left' onclick='MoveLeft()' /><input type='button' value='Move Right' onclick='MoveRight()' />");
+                 "<input type='button' value='Move Up' onclick='MoveUp()' /><input type='button' value='Move Down' onclick='MoveDown()'/> <input type='button' value='Move Left' onclick='MoveLeft()' /><input type='button' value='Move Right' onclick='MoveRight()'/> ");
       DrawBoard();
     }
 
@@ -64,7 +63,7 @@
     function MoveDown()
     {
         var playerY = GetPlayerY();
-        if (playerY + 1 < gridSizeY)
+        if (playerY + 1 < gridSize)
         {
           playerY++;
         }
@@ -75,7 +74,7 @@
     function MoveRight()
     {
         var playerX = GetPlayerX();
-        if (playerX + 1 < gridSizeX)
+        if (playerX + 1 < gridSize)
         {
           playerX++;
         }
@@ -94,25 +93,33 @@
         DrawBoard();
     }
 
+    function ChangePlayerType(playerType)
+    {
+        $('#playerType').data("url", playerType);
+        DrawBoard();
+    }
 
     function DrawBoard()
     {
-
       var playerX = GetPlayerX();
       var playerY = GetPlayerY();
 
       var html = "<table>";
-      for (var row = 0; row < gridSizeY; row++)
+      for (var row = 0; row < gridSize; row++)
       {
           html += "<tr>";
-          for (var column = 0; column < gridSizeX; column++)
+          for (var column = 0; column < gridSize; column++)
           {
-            var charDrawing = "-";
             if (row == playerY && column == playerX)
             {
-              charDrawing = "*";
+              html += '<td id="player">';
+              html += $('#playerType').data('url');
+              html += '</td>';
             }
-            html += "<td>" + charDrawing + "</td>";
+            else
+            {
+              html += '<td id="board">-</td>';
+            }
           }
           html += "</tr>";
       }
@@ -147,6 +154,7 @@
     <!-- game data stored in html -->
     <div id="playerX" data-url="5"></div>
     <div id="playerY" data-url="5"></div>
+    <div id="playerType" data-url="@"></div>
 
 
     <div class="container">
@@ -157,19 +165,25 @@
             <div class="row">
 
                 <div class="col-sm-6">
-                <div class="well">
                 <h3>Game Board</h3>
                 <ul id="gameboard">
 
 
                 </ul>
-                </div>
             </div>
 
                 <div class="col-sm-6">
                 <div class="well">
                 <h3 id="controls">Controls</h3>
                   <input type="button" value="Start Game" onclick="StartGame()" />
+
+                  <h3>Player character</h3>
+                  <form>
+                  <input type="radio" name="browser" onclick="ChangePlayerType(this.value)" value="@">@<br>
+                  <input type="radio" name="browser" onclick="ChangePlayerType(this.value)" value="#">#<br>
+                  <input type="radio" name="browser" onclick="ChangePlayerType(this.value)" value="?">?<br>
+                  <input type="radio" name="browser" onclick="ChangePlayerType(this.value)" value="*">*<br>
+                  </form>
 
                 </div>
             </div>

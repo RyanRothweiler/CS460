@@ -3,7 +3,7 @@
 /*html tag selector*/
 body 
 {
-  padding-top: 50px;
+  	padding-top: 50px;
 }
 
 /*class selector*/
@@ -28,7 +28,23 @@ body, p
 /*Actual css for HW1 pages*/
 p
 {
-  text-align: left;
+  	text-align: left;
+}
+
+#gameboard
+{
+	line-height: 40%;
+}
+
+#player
+{
+	color: #1A5276;
+	font-weight: bold;
+}
+
+#board
+{
+	color: #FFFEFE;
 }
 
 li
@@ -50,6 +66,5 @@ h1
 
 .starter-template
 {
-  padding: 40px 15px;
-  /*text-align: center;*/
+  	padding: 40px 15px;
 }

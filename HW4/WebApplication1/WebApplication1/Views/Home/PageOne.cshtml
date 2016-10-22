@@ -3,19 +3,25 @@
     ViewBag.Title = "PageOne";
 }
 
-<h2>PageOne</h2>
+<h2>Table Builder</h2>
 
-<form method="get">
-    <input type="text" name="itemA" value="Your name?" />
-    <input type="submit" name="submit" value="Submit" />
+<form method="post">
+    <input type="number" name="Rows" value="10" />
+    <input type="number" name="Columns" value="10" />
+    <input type="submit" name="Build" value="Submit" />
 </form>
 
 <div class="row">
     <div class="col-md-6">
         <table class="table table-striped">
-            @foreach (var s in ViewBag.data)
+            @for (int row = 0; row < ViewBag.Rows; row++)
             {
-                <tr><td>@s</td></tr>
+                <tr>
+                    @for (int col = 0; col < ViewBag.Columns; col++)
+                    {                
+                       <td>Entry</td>
+                    }
+                </tr>
             }
         </table>
     </div>

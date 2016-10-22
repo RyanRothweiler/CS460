@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "PageTwo";
+}
+
+<h2>Progress Bar Builder</h2>
+
+<form method="get">
+    <input type="number" name="Value" value="@ViewBag.BarValue" />
+    <input type="submit" name="Build" value="Submit" />
+</form>
+
+@if (ViewBag.BarValue != 0)
+{
+    <p></p>
+
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="@ViewBag.BarValue" aria-valuemin="0" aria-valuemax="100" style="width: @ViewBag.BarValue%;">
+            @ViewBag.BarValue
+        </div>
+    </div>
+}

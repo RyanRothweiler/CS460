@@ -1,7 +1,41 @@
-﻿
+﻿@model IEnumerable<HW5_MajorMinorForm.Models.User>
+
 @{
     ViewBag.Title = "ViewRequests";
 }
 
 <h2>ViewRequests</h2>
 
+<table class="table">
+    <tr>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().FirstName)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().LastName)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().Date)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().PhoneNumber)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().VNumber)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().CatalogYear)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().EMail)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().Major)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().Minor)</th>
+        <th>@Html.LabelFor(model => model.FirstOrDefault().Advisor)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => item.FirstName)</td>
+            <td>@Html.DisplayFor(model => item.LastName)</td>
+            <td>@Html.DisplayFor(model => item.Date)</td>
+            <td>@Html.DisplayFor(model => item.PhoneNumber)</td>
+            <td>@Html.DisplayFor(model => item.VNumber)</td>
+            <td>@Html.DisplayFor(model => item.CatalogYear)</td>
+            <td>@Html.DisplayFor(model => item.EMail)</td>
+            <td>@Html.DisplayFor(model => item.Major)</td>
+            <td>@Html.DisplayFor(model => item.Minor)</td>
+            <td>@Html.DisplayFor(model => item.Advisor)</td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteEntry", new { item.ID }, null)
+            </td>
+        </tr>
+    }

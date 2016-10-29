@@ -1,87 +1,100 @@
-﻿
+﻿@model HW5_MajorMinorForm.Models.User
+
 @{
     ViewBag.Title = "AddRequests";
-}
+} 
 
 <h2>Change of Major/Minor/Advisor Form</h2>
 <h1></h1>
 
 <div class="container">
-    <form method="get">
+    <form method="post">
+
+        @Html.AntiForgeryToken()
+
         <div class="form-group row">
             <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
             <div class="col-sm-10">
-                <input id="lastname" class="form-control" type="text" name="LastName" value="last name" />
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
             <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
             <div class="col-sm-10">
-                <input id="firstname" class="form-control" type="text" name="FirstName" value="first name" />
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
             <label for="date" class="col-sm-2 col-form-label">Date</label>
             <div class="col-sm-10">
-                <input id="date" class="form-control" type="date" name="Date" value="first name" />
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @type = "date"}})
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+            <label for="date" class="col-sm-2 col-form-label">Phone Number</label>
             <div class="col-sm-10">
-                <input id="phone" class="form-control" type="tel" name="Phone" value="phone Num" />
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="catYear" class="col-sm-2 col-form-label">Catalog Year</label>
+            <label for="date" class="col-sm-2 col-form-label">Catalog Year</label>
             <div class="col-sm-10">
-                <input id="catYear" class="form-control" type="number" name="CatalogYear" value="first name" />
+                @Html.EditorFor(model => model.CatalogYear, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                @Html.ValidationMessageFor(model => model.CatalogYear, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+            <label for="date" class="col-sm-2 col-form-label">V Number</label>
             <div class="col-sm-10">
-                <input id="firstname" class="form-control" type="text" name="FirstName" value="first name" />
+                @Html.EditorFor(model => model.VNumber, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                @Html.ValidationMessageFor(model => model.VNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="vnum" class="col-sm-2 col-form-label">V Number</label>
+            <label for="date" class="col-sm-2 col-form-label">EMail</label>
             <div class="col-sm-10">
-                <input id="vnum" class="form-control" type="number" name="VNumber" value="v number" />
+                @Html.EditorFor(model => model.EMail, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                @Html.ValidationMessageFor(model => model.EMail, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label">E-Mail</label>
+            <label for="date" class="col-sm-2 col-form-label">Major</label>
             <div class="col-sm-10">
-                <input id="email" class="form-control" type="email" name="EMail" value="email" />
+                @Html.EditorFor(model => model.Major, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                @Html.ValidationMessageFor(model => model.Major, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="major" class="col-sm-2 col-form-label">Major</label>
+            <label for="date" class="col-sm-2 col-form-label">Minor</label>
             <div class="col-sm-10">
-                <input id="major" class="form-control" type="text" name="Major" value="major" />
+                @Html.EditorFor(model => model.Minor, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                @Html.ValidationMessageFor(model => model.Minor, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="minor" class="col-sm-2 col-form-label">Minor</label>
+            <label for="date" class="col-sm-2 col-form-label">Advisor</label>
             <div class="col-sm-10">
-                <input id="minor" class="form-control" type="text" name="Minor" value="minor" />
+                @Html.EditorFor(model => model.Advisor, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+                @Html.ValidationMessageFor(model => model.Advisor, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group row">
-            <label for="advisor" class="col-sm-2 col-form-label">Advisor</label>
-            <div class="col-sm-10">
-                <input id="advisor" class="form-control" type="text" name="Advisor" value="advisor" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit Form" class="btn btn-default" />
             </div>
         </div>
     </form>

@@ -19,24 +19,22 @@ GO
 
 
 -- ########### Users ###########
-CREATE TABLE [dbo].[Users]
-(
-	[ID] INT IDENTITY (1,1) NOT NULL,
-	[FirstName] NVARCHAR (50) NOT NULL,
-	[LastName] NVARCHAR (50) NOT NULL,
-	[DOB] DATETIME NOT NULL,
-	CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED ([ID] ASC)
+CREATE TABLE [dbo].[Users] (
+    [ID]          INT            IDENTITY (1, 1) NOT NULL,
+    [FirstName]   NVARCHAR (MAX) NULL,
+    [LastName]    NVARCHAR (MAX) NULL,
+    [Date]        DATETIME       NULL,
+    [PhoneNumber] VARCHAR(50)            NULL,
+    [CatalogYear] VARCHAR(50)            NULL,
+    [VNumber]     INT            NULL,
+    [EMail]       VARCHAR (50)   NULL,
+    [Major]       VARCHAR (50)   NULL,
+    [Minor]       VARCHAR (50)   NULL,
+    [Advisor]     VARCHAR (50)   NULL,
+    CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
 
-BULK INSERT [dbo].[Users]
-	FROM '$(dbdir)\SeedData\Users.csv'		-- ID,FirstName,LastName,DOB
-	WITH
-	(
-		FIELDTERMINATOR = ',',
-		ROWTERMINATOR	= '\n',
-		FIRSTROW = 2
-	);
-GO
+
 
 -- ***********  Detach ***********
 USE master;

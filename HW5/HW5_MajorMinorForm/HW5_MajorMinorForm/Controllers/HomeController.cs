@@ -14,18 +14,32 @@ namespace HW5_MajorMinorForm.Controllers
 
         private UserContext db = new UserContext();
 
-        // GET: Home
+        
+        /// <summary>
+        /// Gives the index page
+        /// </summary>
+        /// <returns>The home index page</returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// HttpGet which gives the blank request form
+        /// </summary>
+        /// <returns>The blank request form</returns>
         [HttpGet]
         public ActionResult RequestForm()
         {
             return View();
         }
 
+        /// <summary>
+        /// HttpPost which adds an entry into the database
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>If successful, moves to the ViewRequests page, 
+        /// else gives a view of the form which was unsuccessful</returns>
         [HttpPost]
         public ActionResult RequestForm(User user)
         {
@@ -39,6 +53,11 @@ namespace HW5_MajorMinorForm.Controllers
             return View(user);
         }
 
+        /// <summary>
+        /// Deletes an entry from the database
+        /// </summary>
+        /// <param name="id"> The id of the entry to be deleted </param>
+        /// <returns>Returns to the index view</returns>
         public ActionResult DeleteEntry(int? id)
         {
             User user = db.Users.Find(id);
@@ -51,6 +70,10 @@ namespace HW5_MajorMinorForm.Controllers
             return View("Index");
         }
 
+        /// <summary>
+        /// Returns a veiw of the database entries
+        /// </summary>
+        /// <returns>Returns a view of the database entries</returns>
         public ActionResult ViewRequests()
         {
             Debug.WriteLine(db.Users);

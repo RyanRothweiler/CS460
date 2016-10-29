@@ -58,8 +58,26 @@ namespace WebApplication1.Controllers
             return (View());
         }
 
+        [HttpGet]
         public ActionResult PageThree()
         {
+            return (View());
+        }
+
+        [HttpPost]
+        public ActionResult PageThree(double? LoanAmount, double? InterestRate, double? TermLength)
+        {
+            if (LoanAmount == null || InterestRate == null || TermLength == null)
+            {
+                ViewBag.Valid = false;
+            }
+            else
+            {
+                ViewBag.Valid = true;
+           
+                double payment = (LoanAmount.Value * (InterestRate.Value / -100.0)) / (1 - Math.Pow((1 + (InterestRate.Value / 100.0)), TermLength.Value));
+                ViewBag.Payment = payment;
+            }
             return (View());
         }
     }

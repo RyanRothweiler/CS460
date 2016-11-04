@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    function BuildSubCat()
+    {
+        for (var index = 0; index < 100; index++)
+        {
+            var element = document.getElementById("hider " + index);
+            if (element != null)
+            {
+                alert("hiding");
+                document.getElementById("hider " + index).style.display = 'none';
+            }
+        }
+
+        var topCat = document.getElementById("topSelect").value;
+        var finalid = "hider " + topCat;
+        //alert(finalid);
+        document.getElementById(finalid).style.display = 'inline-block';
+
+    }
+</script>
+
+<h2>Select Items</h2>
+
+<div class="dropdown">
+
+    <h4>Category</h4>
+    <select id="topSelect" class="form-control" onchange="BuildSubCat()">
+    @for (int index = 0; index < ViewBag.categories.Count; index++)
+    {
+        <option value="@index">@ViewBag.categories[index].categoryName</option>
+    }
+    </select>
+    
+    <h4>SubCategory</h4>
+    @for (int index = 0; index < ViewBag.categories.Count; index++)
+    {
+        <div id="hider @index" style="display: none;">
+            <select class="form-control">
+                @foreach (var item in ViewBag.categories[index].subCategories)
+                {
+                    <option>@item</option>
+                }
+            </select>
+        </div>            
+    }
+
+</div>

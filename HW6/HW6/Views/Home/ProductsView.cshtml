@@ -1,0 +1,49 @@
+﻿@model IEnumerable<HW6.Models.Product>
+
+@{
+    ViewBag.Title = "ProductsView";
+}
+
+<h2>Products Listing</h2>
+<form>
+    <button class="btn btn-default">New Search</button>
+</form>
+
+<div class="container">
+    <br />    
+        @foreach (var item in ViewBag.products)
+        {
+            <div class="item  col-xs-4 col-lg-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading">
+                            @item.Name, @item.ProductID
+                        </h4>
+                        @if (@item.Size != null)
+                        {
+                            <p class="group inner list-group-item-text">
+                                Size: @item.Size <br />
+                                Style: @item.Style<br />
+                            </p>
+                        }
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">
+                                    $@item.ListPrice
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <form method="post">
+                                    <button type="submit" value="@item.Name" name="button" class="btn btn-default">View Reviews</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+</div>
+
+
+<br />
+<p></p>

@@ -30,6 +30,9 @@
     }
 </script>
 
+<h2></h2>
+<a href="/Home/AddReview" class="btn btn-info" role="button">Add Review</a>
+
 <h2>Select Items</h2>
 
 <div class="dropdown">
@@ -48,16 +51,12 @@
             @for (int index = 0; index < ViewBag.categories.Count; index++)
             {
                 <div id="hider @index" style="display: none;">
-                        @foreach (var item in ViewBag.categories[index].subCategories)
-                        {
-                            <button type="submit" class="btn btn-default">@item</button>
-                        }
+                    @foreach (var item in ViewBag.categories[index].subCategories)
+                    {
+                        <button type="submit" value="@item" name="button" class="btn btn-default">@item</button>
+                    }
                 </div>
             }
         </div>
     </form>
-
-    <div id="submitbutton">
-
-    </div>
 </div>

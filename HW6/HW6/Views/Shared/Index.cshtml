@@ -3,18 +3,14 @@
 }
 
 <script>
-    function Empty()
-    {
+    function Empty() {
         alert("empty");
     }
 
-    function BuildSubCat()
-    {
-        for (var index = 0; index < 100; index++)
-        {
+    function BuildSubCat() {
+        for (var index = 0; index < 100; index++) {
             var element = document.getElementById("hider " + index);
-            if (element != null)
-            {
+            if (element != null) {
                 document.getElementById("hider " + index).style.display = 'none';
             }
         }
@@ -24,8 +20,7 @@
         document.getElementById(finalid).style.display = 'inline-block';
     }
 
-    function SubmitSubCat()
-    {
+    function SubmitSubCat() {
         alert("submit sub cat");
     }
 </script>
@@ -39,12 +34,12 @@
 
     <h4>Category</h4>
     <select id="topSelect" class="form-control" onchange="BuildSubCat()">
-    @for (int index = 0; index < ViewBag.categories.Count; index++)
-    {
-        <option value="@index">@ViewBag.categories[index].categoryName</option>
-    }
+        @for (int index = 0; index < ViewBag.categories.Count; index++)
+        {
+            <option value="@index">@ViewBag.categories[index].categoryName</option>
+        }
     </select>
-    
+
     <h4>SubCategory</h4>
     <form method="post">
         <div class="btn-group" role="group" aria-label="...">

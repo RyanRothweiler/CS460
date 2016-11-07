@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -9,146 +12,139 @@ using System.Web.Mvc;
 
 namespace HW6.Controllers
 {
-    public class CategoryHolder
+
+
+/// <summary>
+/// Convenience class to organize the category and subcategories in a way easy to display
+/// </summary>
+public class CategoryHolder
+{
+    public String categoryName;
+    public List<String> subCategories = new List<String>();
+}
+
+
+public class HomeController : Controller
+{
+
+    private ProductionModel prodModel = new ProductionModel();
+
+    /// <summary>
+    /// Initial homepage
+    /// </summary>
+    /// <returns></returns>
+    public ActionResult Index()
     {
-        public String categoryName;
-        public List<String> subCategories = new List<String>();
+        ViewBag.categories = BuildCategories();
+        return View();
     }
 
-
-    public class HomeController : Controller
+    /// <summary>
+    /// Post method for main page. Called after a sub category button was clicked.
+    /// </summary>
+    /// <param name="button">Holds the name of the sub category button which was clicked.</param>
+    /// <returns></returns>
+    [HttpPost]
+    public ActionResult Index(string button)
     {
-        private ProductionModel prodModel = new ProductionModel();
-
-        // GET: Home
-        public ActionResult Index()
+        List<Product> allProducts = new List<Product>();
+        foreach (Product prod in prodModel.Products)
         {
-            Debug.WriteLine("Doing Get");
-
-            ViewBag.categories = BuildCategories();
-            return View();
+            if (prod.ProductSubcategory != null &&
+                prod.ProductSubcategory.Name == button)
+            {
+                allProducts.Add(prod);
+            }
         }
 
-        [HttpPost]
-        public ActionResult Index(string button)
+        if (allProducts.Count == 0)
         {
-            Debug.WriteLine("Doing Post for " + button);
-
-            if (button == "addreview")
-            {
-                Debug.WriteLine("Going to review form");
-            }
-
-            List<Product> allProducts = new List<Product>();
             foreach (Product prod in prodModel.Products)
             {
-                if (prod.ProductSubcategory != null && 
-                    prod.ProductSubcategory.Name == button)
+                if (prod.Name == button)
                 {
-                    Debug.WriteLine(prod.ProductSubcategory.Name);
-                    allProducts.Add(prod);
+                    ViewBag.product = prod;
+                    return View("ProductReviews", prod.ProductReviews);
                 }
             }
 
-            if (allProducts.Count == 0)
-            {
-                Debug.WriteLine("Go to review page for " + button);
-
-                foreach (Product prod in prodModel.Products)
-                {
-                    if (prod.Name == button)
-                    {
-                        Debug.WriteLine("Going to product view");
-                        ViewBag.product = prod;
-                        return View("ProductReviews", prod.ProductReviews);
-                    }
-                }
-
-                Debug.WriteLine("Could not find that product.");
-                return View("Index");
-            }
-            else
-            {
-                ViewBag.products = allProducts;
-                return View("ProductsView");
-            }
-        }
-
-        public List<CategoryHolder> BuildCategories()
-        {
-            List<CategoryHolder> catHolder = new List<CategoryHolder>();
-            foreach (ProductCategory category in prodModel.ProductCategories)
-            {
-                CategoryHolder newHolder = new CategoryHolder();
-                newHolder.categoryName = category.Name;
-
-                foreach (ProductSubcategory subCat in category.ProductSubcategories)
-                {
-                    newHolder.subCategories.Add(subCat.Name);
-                }
-
-                catHolder.Add(newHolder);
-            }
-            return (catHolder);
-        }
-
-        public ActionResult ProductsView()
-        {
             return View("Index");
         }
-
-        public ActionResult ProductReviews()
+        else
         {
-            Debug.WriteLine("Product reviews GET");
-
-            return View();
+            ViewBag.products = allProducts;
+            return View("ProductsView");
         }
+    }
 
-        [HttpPost]
-        public ActionResult ProductReviews(string button)
+    /// <summary>
+    /// Returns a list of the category and sub category options.
+    /// </summary>
+    /// <returns></returns>
+    public List<CategoryHolder> BuildCategories()
+    {
+        List<CategoryHolder> catHolder = new List<CategoryHolder>();
+        foreach (ProductCategory category in prodModel.ProductCategories)
         {
-            Debug.WriteLine("Add new review to database");
+            CategoryHolder newHolder = new CategoryHolder();
+            newHolder.categoryName = category.Name;
 
-            ViewBag.categories = BuildCategories();
-            return View();
-        }
-
-        public ActionResult AddReview()
-        {
-            return View(new ProductReview());
-        }
-
-        [HttpPost]
-        public ActionResult AddReview(ProductReview review)
-        {
-            Debug.WriteLine("Adding Review");
-
-            if (ModelState.IsValid)
+            foreach (ProductSubcategory subCat in category.ProductSubcategories)
             {
-                Debug.WriteLine("Adding Review for " + review.ProductID);
-                foreach (Product prod in prodModel.Products)
-                {
-                    if (prod.ProductID == review.ProductID)
-                    {
-                        review.Product = prod;
-                        prod.ProductReviews.Add(review);
-                        prodModel.SaveChanges();
-                        Debug.WriteLine("ADDED REVIEW");
-                        return View("Index");
-                        break;
-                    }
-                }
+                newHolder.subCategories.Add(subCat.Name);
+            }
 
-                for (int index = 0; index < prodModel.Products.Count<Product>(); index++)
-                {
-                    //if (prodModel.Products[index].ProductID == review.ProductID)
-                    {
+            catHolder.Add(newHolder);
+        }
+        return (catHolder);
+    }
 
-                    }
+    /// <summary>
+    /// Giving a review page for a product
+    /// </summary>
+    /// <returns></returns>
+    [HttpPost]
+    public ActionResult ProductReviews()
+    {
+        return View();
+    }
+
+    /// <summary>
+    /// Giving initial review form page
+    /// </summary>
+    /// <returns></returns>
+    public ActionResult AddReview()
+    {
+        return View(new ProductReview());
+    }
+
+    /// <summary>
+    /// Adds a review to the database
+    /// </summary>
+    /// <param name="review">The review to add</param>
+    /// <returns></returns>
+    [HttpPost]
+    public ActionResult AddReview(ProductReview review)
+    {
+        if (ModelState.IsValid)
+        {
+            review.ModifiedDate = DateTime.Now;
+            foreach (Product prod in prodModel.Products)
+            {
+                if (prod.ProductID == review.ProductID)
+                {
+                    review.Product = prod;
+                    prod.ProductReviews.Add(review);
+                    break;
                 }
             }
 
-            return View(review);
+            prodModel.SaveChanges();
+
         }
+
+        ViewBag.categories = BuildCategories();
+        return RedirectToAction("Index");
     }
+}
 }

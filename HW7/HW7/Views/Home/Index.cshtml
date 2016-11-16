@@ -1,0 +1,27 @@
+﻿
+<?php header('Access-Control-Allow-Origin: *'); ?>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Stock Prices</h2>
+
+<div class="form-group">
+    <label for="symbol">Symbol:</label>
+    <input type="text" class="form-control" id="symbol" />
+    <button type="button" class="btn btn-default" onclick="GetPrices()">Submit</button>
+</div>
+
+<h2 id="symbolHeader">SYMBOL</h2>
+
+@section PageScripts
+{
+
+    <script type="text/javascript" src="~/Scripts/StockInfo.js"></script>
+
+<div id="graph">
+
+</div>
+
+}

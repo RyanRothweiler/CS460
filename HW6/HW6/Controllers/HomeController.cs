@@ -35,6 +35,7 @@ public class HomeController : Controller
     /// <returns></returns>
     public ActionResult Index()
     {
+        //ViewBag.categories = prodModel.ProductCategories.Select(c => new { categoryName = c.Name, subCategories = c.ProductSubcategories.Select(subCat => new { Name = subCat.Name }) }).ToList();
         ViewBag.categories = BuildCategories();
         return View();
     }

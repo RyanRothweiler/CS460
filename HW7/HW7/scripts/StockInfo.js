@@ -1,30 +1,28 @@
 ﻿function GetPrices()
 {
-    console.log("Getting the new graph");
+    var symbol = document.getElementById("symbol").value;
 
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "/Home/GetStockData",
+        url: "/Home/GetStockData/",
+        data: { sym: symbol },
         success: DisplayData
     });
-
-    g = new Dygraph(
-
-       // containing div
-       document.getElementById("graph"),
-
-       // CSV or path to a CSV file.
-       "Date,Temperature\n" +
-       "2008-05-07,75\n" +
-       "2008-05-08,70\n" +
-       "2008-05-09,80\n"
-
-     );
 }
 
 function DisplayData(data)
 {
-    console.log("Data!");
-    console.log(data.row);
+    console.log(data.yahooFile);
+    g = new Dygraph(
+        document.getElementById("graph"), 
+        data.yahooFile, 
+        {
+            xlabel: 'Date',
+            ylabel: 'Price',
+            valueRange: [0, 300],
+            height: 700,
+        }
+    );
+    document.getElementById("symbolHeader").innerHTML = data.symbol;
 }

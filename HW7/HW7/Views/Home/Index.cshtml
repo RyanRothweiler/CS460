@@ -5,23 +5,32 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Stock Prices</h2>
-
-<div class="form-group">
-    <label for="symbol">Symbol:</label>
-    <input type="text" class="form-control" id="symbol" />
-    <button type="button" class="btn btn-default" onclick="GetPrices()">Submit</button>
+<div class="page-header">
+    <h1>Stocks</h1>
 </div>
 
-<h2 id="symbolHeader">SYMBOL</h2>
+<h4>Symbol Search</h4>
+<div class="form-group">
+    <div class="row">
+        <div class="form-group col-xs-6">
+            <input type="text" class="form-control" id="symbol" />
+        </div>
 
-@section PageScripts
+        <div class="form-group col-xs-6">
+            <button type="button" class="btn btn-default" onclick="GetPrices()">Submit</button>
+        </div>
+    </div>
+</div>
+
+<h1 id="symbolHeader"></h1>
+
+    <div id="graph">
+
+    </div>
+
+    @section PageScripts
 {
 
-    <script type="text/javascript" src="~/Scripts/StockInfo.js"></script>
+        <script type="text/javascript" src="~/Scripts/StockInfo.js"></script>
 
-<div id="graph">
-
-</div>
-
-}
+    }

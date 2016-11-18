@@ -28,9 +28,18 @@
 
     </div>
 
-    @section PageScripts
+<h4>Display Toggle</h4>
+<div class="checkbox">
+    <label><input type="checkbox" value="" onclick="ToggleOpen()" checked>Open</label>
+</div>
+<div class="checkbox">
+    <label><input type="checkbox" value="" onclick="ToggleHigh()" checked>High</label>
+</div>
+<div class="checkbox">
+    <label><input type="checkbox" value="" onclick="ToggleLow()" checked>Low</label>
+</div>
+
+@section PageScripts
 {
-
         <script type="text/javascript" src="~/Scripts/StockInfo.js"></script>
-
-    }
+}

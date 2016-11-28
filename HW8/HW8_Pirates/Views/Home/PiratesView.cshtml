@@ -1,0 +1,39 @@
+﻿@model IEnumerable<HW8_Pirates.Models.Pirate>
+
+@{
+    ViewBag.Title = "PiratesView";
+}
+
+<h2>PiratesView</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreatePirate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateConscripted)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateConscripted)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdatePirate", new { id=item.ID }) |
+            @Html.ActionLink("Details", "ReadPirate", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "DeletePirate", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

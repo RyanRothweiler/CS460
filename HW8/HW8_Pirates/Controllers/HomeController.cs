@@ -87,8 +87,15 @@ namespace HW8_Pirates.Controllers
 
         public ActionResult DeletePirate(int? id)
         {
+            var crewsToDelete = db.Crews.Where(c => c.PirateID == id);
+            foreach (Crew c in crewsToDelete)
+            {
+                db.Crews.Remove(c);
+            }
+
             Pirate pirateToDelete = db.Pirates.Find(id);
             db.Pirates.Remove(pirateToDelete);
+
             db.SaveChanges();
 
             return RedirectToAction("PiratesView");

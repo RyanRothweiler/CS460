@@ -2,6 +2,8 @@
 --    This version is customized for initializing the db on Azure
 --    Seed data is in populate.sql
 
+CREATE DATABASE HW8
+GO
 
 USE [HW8]
 GO

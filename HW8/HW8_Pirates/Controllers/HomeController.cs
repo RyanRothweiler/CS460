@@ -28,9 +28,32 @@ namespace HW8_Pirates.Controllers
             return View(db.Ships);
         }
 
-        public ActionResult PiratesView()
+        public ActionResult PiratesView(string button)
         {
-            return View(db.Pirates);
+            int page = 0;
+            if (button != null) 
+            {
+                page = int.Parse(button);
+            }
+            int pageSize = 3;
+
+            ViewBag.PagesCount = GetPiratePagesCount(pageSize);
+
+            var piratesList = (from p in db.Pirates
+                               orderby p.ID
+                               select p).Skip(pageSize * (int)page).Take(pageSize).ToList();
+            //var piratesList = db.Pirates.OrderBy().Skip(pageSize * (int)page).Take(pageSize).ToList();
+            return View(piratesList);
+        }
+          
+        public int GetPiratePagesCount(int pageSize)
+        {
+            float pageCount = (float)db.Pirates.ToList().Count / (float)pageSize;
+            if ((int)pageCount < pageCount)
+            {
+                return ((int)(pageCount + 1));
+            }
+            return ((int)pageCount);
         }
 
         public ActionResult CreatePirate()
@@ -41,9 +64,7 @@ namespace HW8_Pirates.Controllers
         [HttpPost]
         public ActionResult CreatePirate(Pirate newPirate)
         {
-            // TODO make sure that the date is in the past
-
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && newPirate.DateConscripted < DateTime.Now)
             {
                 db.Pirates.Add(newPirate);
                 db.SaveChanges();
@@ -52,6 +73,21 @@ namespace HW8_Pirates.Controllers
             }
   
             return View(newPirate);
+        }
+
+        public JsonResult GetBooty()
+        {
+
+            var bootyList = db.Pirates.Select(p => new {Name = p.Name, Booty = p.Crews.Select(c => c.Booty).Sum()})
+                .OrderByDescending(pnb => pnb.Booty);
+
+            var data = new
+            {
+                bootyVal = bootyList,
+                bootySize = bootyList.Count(),
+            };
+
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ReadPirate(int? id)

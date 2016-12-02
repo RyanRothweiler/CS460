@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
 }
 
+<script type="text/javascript" src="~/Scripts/BootyCalc.js"></script>
+
 <div class="container">
     <div class="jumbotron">
         <h1>AVAST This is yer database o pirates.</h1>
@@ -11,3 +13,13 @@
         </p>
     </div>
 </div>
+
+<h3>
+    Booty Stats!
+</h3>
+
+<button class="btn btn-default" onclick="GetBootyValues()">Calculate Booty</button>
+
+<ul id="bootyList" class="list-group">
+    
+</ul>

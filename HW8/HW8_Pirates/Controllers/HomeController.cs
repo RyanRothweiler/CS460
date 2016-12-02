@@ -79,10 +79,18 @@ namespace HW8_Pirates.Controllers
         [HttpPost]
         public ActionResult UpdatePirate(int? id, FormCollection form)
         {
-            Pirate pirateToUpdate = db.Pirates.Find(id);
-            TryUpdateModel(pirateToUpdate, "", new string[] { "Name", "Date"});
-            db.SaveChanges();
-            return RedirectToAction("PiratesView");
+            DateTime testDate = DateTime.Parse(form["DateConscripted"]);
+            if (testDate < DateTime.Now)
+            {
+                Pirate pirateToUpdate = db.Pirates.Find(id);
+                TryUpdateModel(pirateToUpdate, "", new string[] { "Name", "DateConscripted" });
+                db.SaveChanges();
+                return RedirectToAction("PiratesView");
+            }
+            else
+            {
+                return (View(db.Pirates.Find(id)));
+            }
         }
 
         public ActionResult DeletePirate(int? id)

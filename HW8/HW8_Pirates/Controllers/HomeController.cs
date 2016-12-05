@@ -42,7 +42,6 @@ namespace HW8_Pirates.Controllers
             var piratesList = (from p in db.Pirates
                                orderby p.ID
                                select p).Skip(pageSize * (int)page).Take(pageSize).ToList();
-            //var piratesList = db.Pirates.OrderBy().Skip(pageSize * (int)page).Take(pageSize).ToList();
             return View(piratesList);
         }
           
@@ -77,7 +76,6 @@ namespace HW8_Pirates.Controllers
 
         public JsonResult GetBooty()
         {
-
             var bootyList = db.Pirates.Select(p => new {Name = p.Name, Booty = p.Crews.Select(c => c.Booty).Sum()})
                 .OrderByDescending(pnb => pnb.Booty);
 

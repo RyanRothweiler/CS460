@@ -6,15 +6,17 @@ namespace Final.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TestTable")]
-    public partial class TestTable
+    [Table("Classification")]
+    public partial class Classification
     {
         public int ID { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Name { get; set; }
+        public int ArtworkID { get; set; }
 
-        public DateTime? DateConscripted { get; set; }
+        public int GenreID { get; set; }
+
+        public virtual Artwork Artwork { get; set; }
+
+        public virtual Genre Genre { get; set; }
     }
 }

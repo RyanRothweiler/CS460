@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Final.Models.TestTable>
+﻿@model IEnumerable<Final.Models.Artwork>
 
 @{
-    ViewBag.Title = "TestList";
+    ViewBag.Title = "ArtworksList";
 }
 
-<h2>TestList</h2>
+<h2>ArtworksList</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateConscripted)
+            @Html.DisplayNameFor(model => model.ArtistID)
         </th>
         <th></th>
     </tr>
@@ -23,10 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateConscripted)
+            @Html.DisplayFor(modelItem => item.ArtistID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

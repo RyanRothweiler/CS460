@@ -12,16 +12,24 @@ using System.Diagnostics;
  */
 public class Node
 {
-	public Object data;	// The payload
+	public object data;	// The payload
 	public Node next;	// Reference to the next Node in the chain
 
-	public Node()
+	/// <summary>
+    /// Null node constructor
+    /// </summary>
+    public Node()
 	{
 		data = null;
 		next = null;
 	}
 
-	public Node(Object data, Node next)
+	/// <summary>
+    /// Node constructor given obj data and the next node
+    /// </summary>
+    /// <param name="data">data which does in this node</param>
+    /// <param name="next">the next linked node</param>
+    public Node(object data, Node next)
 	{
 		this.data = data;
 		this.next = next;

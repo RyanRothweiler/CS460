@@ -1,4 +1,5 @@
-﻿function GetBootyValues()
+﻿// Get json booty data from server
+function GetBootyValues()
 {
         $.ajax({
         	type: "GET",
@@ -9,6 +10,7 @@
     	});
 }
 
+// Display the json booty data
 function DisplayData(data)
 {
 	document.getElementById("bootyList").innerHTML = "";

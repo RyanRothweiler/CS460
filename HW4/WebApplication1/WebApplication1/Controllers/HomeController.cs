@@ -11,12 +11,19 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        /// <summary>
+        /// Get for index home page
+        /// </summary>
+        /// <returns>View of index home page</returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Initial get for page one
+        /// </summary>
+        /// <returns>View for page one</returns>
         [HttpGet]
         public ActionResult PageOne()
         {
@@ -26,6 +33,11 @@ namespace WebApplication1.Controllers
             return (View());
         }
 
+        /// <summary>
+        /// Post for the table builder page. 
+        /// </summary>
+        /// <param name="form">Used to differentiate with httpget for page one</param>
+        /// <returns>View for page one with information in viewbag</returns>
         [HttpPost]
         public ActionResult PageOne(FormCollection form)
         {
@@ -36,6 +48,10 @@ namespace WebApplication1.Controllers
             return (View());
         }
 
+        /// <summary>
+        /// Initial get for progress bar builder page
+        /// </summary>
+        /// <returns>View of progress bar page</returns>
         [HttpGet]
         public ActionResult PageTwo()
         {
@@ -58,12 +74,23 @@ namespace WebApplication1.Controllers
             return (View());
         }
 
+        /// <summary>
+        /// Initial get for loan calculator page
+        /// </summary>
+        /// <returns>Loan calculator page</returns>
         [HttpGet]
         public ActionResult PageThree()
         {
             return (View());
         }
 
+        /// <summary>
+        /// Builds information for loan calculator page
+        /// </summary>
+        /// <param name="LoanAmount">The loan amount</param>
+        /// <param name="InterestRate">The interest rate</param>
+        /// <param name="TermLength">The term length</param>
+        /// <returns>Loan calculator page</returns>
         [HttpPost]
         public ActionResult PageThree(double? LoanAmount, double? InterestRate, double? TermLength)
         {

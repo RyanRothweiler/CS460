@@ -25,16 +25,15 @@ class Calculator
         Console.WriteLine("Bye.");
     }
 
-    /**
-    *  Get input string from user and perform calculation, returning true when
-    *  finished. If the user wishes to quit this method returns false.
-    *
-    *@return    true if a calculation succeeded, false if the user wishes to quit
-    */
+    /// <summary>
+    /// Get input string from user and perform calculation, returning true when
+    /// finished. If the user wishes to quit this method returns false.
+    /// </summary>
+    /// <returns>true if a calculation succeeded, false if the user wishes to quit</returns>
     private bool doCalculation()
     {
         Console.WriteLine("Please enter q to quit\n");
-        String input = "2 2 +";
+        string input = "2 2 +";
         Console.WriteLine("> ");         // prompt user
 
         input = Console.ReadLine();
@@ -47,7 +46,7 @@ class Calculator
         }
 
         // Go ahead with calculation
-        String output = "4";
+        string output = "4";
         output = EvaluatePostFixInput( input );
 
         Console.WriteLine("\n\t>>> " + input + " = " + output);
@@ -55,13 +54,11 @@ class Calculator
         return true;
     }
 
-    /**
-     *  Evaluate an arithmetic expression written in postfix form.
-     *
-     *@param  input                         Postfix mathematical expression as a String
-     *@return                               Answer as a String
-     *@exception  IllegalArgumentException  Something went wrong
-     */
+    /// <summary>
+    /// Evaluate an arithmetic expression written in postfix form.
+    /// </summary>
+    /// <param name="input">Postfix mathematical expression as a string</param>
+    /// <returns>The answer as a string</returns>
     public string EvaluatePostFixInput(string input)
     {
         StackADT stack = new LinkedStack();
@@ -106,16 +103,14 @@ class Calculator
         return (stack.Pop().ToString());
     }
 
-    /**
-    *  Perform arithmetic.  Put it here so as not to clutter up the previous method, which is already pretty ugly.
-    *
-    *@param  a                             First operand
-    *@param  b                             Second operand
-    *@param  s                             operator
-    *@return                               The answer
-    *@exception  IllegalArgumentException  Something's fishy here
-    */
-    public double doOperation(double a, double b, String s)
+    /// <summary>
+    /// Perform arithmetic.  Put it here so as not to clutter up the previous method, which is already pretty ugly.
+    /// </summary>
+    /// <param name="a">First operand</param>
+    /// <param name="b">Second operand</param>
+    /// <param name="s">Operator</param>
+    /// <returns>The answer</returns>
+    public double doOperation(double a, double b, string s)
     {
         double c = 0.0;
         if (s.Equals( "+" ) )      // Can't use a switch-case with Strings, so we do if-else

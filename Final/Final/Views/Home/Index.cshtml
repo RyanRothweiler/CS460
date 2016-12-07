@@ -4,6 +4,8 @@
 }
 
 
+<script type="text/javascript" src="~/Scripts/GenreAggregator.js"></script>
+
 <div class="container">
     <div class="jumbotron">
         <h1>Final</h1>
@@ -12,3 +14,10 @@
         </p>
     </div>
 </div>
+
+@foreach (var genreName in ViewBag.genreNames)
+{
+    <button class="btn btn-default" onclick="GetGenreData('@genreName')">@genreName</button>
+}
+
+<div id="genreList"></div>

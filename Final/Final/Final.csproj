@@ -144,6 +144,7 @@
     <None Include="Properties\PublishProfiles\RyanFinal - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\RyanFinal - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\GenreAggregator.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -179,6 +180,9 @@
     <Content Include="Views\Home\ArtistsList.cshtml" />
     <Content Include="Views\Home\ArtworksList.cshtml" />
     <Content Include="Views\Home\ClassificationsList.cshtml" />
+    <Content Include="Views\Home\ArtistCreate.cshtml" />
+    <Content Include="Views\Home\ArtistDetails.cshtml" />
+    <Content Include="Views\Home\ArtistEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

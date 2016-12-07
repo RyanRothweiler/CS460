@@ -25,6 +25,7 @@ namespace Final.Models
         [StringLength(50)]
         public string BirthCity { get; set; }
 
+        [Required]
         [Column(TypeName = "datetime2")]
         public DateTime? BirthDate { get; set; }
 

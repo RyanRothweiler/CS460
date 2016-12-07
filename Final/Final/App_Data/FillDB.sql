@@ -4,7 +4,7 @@ DBCC CHECKIDENT('dbo.Artwork', RESEED, 0)
 DBCC CHECKIDENT('dbo.Genre', RESEED, 0)
 DBCC CHECKIDENT('dbo.Classification', RESEED, 0)
 
-INSERT INTO [dbo].[Artist](Name, BirthDate, BirthCity)VALUES('Jack Sparrow', '18980617 12:00:00 AM', 'Leeuwarden, Netherlands');
+INSERT INTO [dbo].[Artist](Name, BirthDate, BirthCity)VALUES('M.C. Escher', '18980617 12:00:00 AM', 'Leeuwarden, Netherlands');
 INSERT INTO [dbo].[Artist](Name, BirthDate, BirthCity)VALUES('Leonardo Da Vinci', '15190502 12:00:00 AM', 'Vinci, Italy');
 INSERT INTO [dbo].[Artist](Name, BirthDate, BirthCity)VALUES('Hatip Mehmed Efendi', '16801018 12:00:00 AM', 'Unknown');
 INSERT INTO [dbo].[Artist](Name, BirthDate, BirthCity)VALUES('Salvador Dali', '19040511 12:00:00 AM', 'Figueres, Spain');

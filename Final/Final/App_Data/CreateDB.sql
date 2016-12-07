@@ -2,8 +2,8 @@
 --    This version is customized for initializing the db on Azure
 --    Seed data is in populate.sql
 
-USE [C:\USERS\RYANROTHWEILER\DOCUMENTS\CS460\FINAL\FINAL\APP_DATA\FINAL.MDF]
-GO
+--USE [C:\USERS\RYANROTHWEILER\DOCUMENTS\CS460\FINAL\FINAL\APP_DATA\FINAL.MDF]
+--GO
 
 -- *********** Drop Tables ***********
 
